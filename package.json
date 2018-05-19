@@ -1,0 +1,28 @@
+{
+  "name": "catalog",
+  "version": "1.0.0",
+  "description": "demo application for product catalog using MERN",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "cd ./server & npm start",
+    "client": "cd ./client & npm start",
+    "start": "cd ./server & npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ledzep9012/catalog.git"
+  },
+  "keywords": [
+    "node",
+    "mongo",
+    "express",
+    "react"
+  ],
+  "author": "Vyom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ledzep9012/catalog/issues"
+  },
+  "homepage": "https://github.com/ledzep9012/catalog#readme"
+}
