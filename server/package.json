@@ -1,0 +1,23 @@
+{
+  "name": "project_template",
+  "version": "1.0.0",
+  "description": "This serves as a project template for writing APIs in Node.js.",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.12",
+    "nodemon": "^1.17.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ledzep9012/catalog.git"
+  },
+  "author": "vyomb",
+  "license": "ISC"
+}
