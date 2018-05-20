@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchProducts } from "../actions/index";
+import { fetchProducts, editProduct } from "../actions/index";
 import ProductList from "../components/content/productsList";
 
 class Home extends Component {
@@ -12,13 +12,14 @@ class Home extends Component {
   };
 
   componentWillMount() {
+    console.log(this.props);
     const { dispatch } = this.props;
     dispatch(fetchProducts());
   }
 
-  onAddProduct(event){
+  onAddProduct(event) {
     event.preventDefault();
-    alert('Adding');
+    alert("Adding");
   }
 
   render() {
@@ -27,11 +28,17 @@ class Home extends Component {
         {this.props.isFetching ? (
           <h2>Loading..</h2>
         ) : (
-          <ProductList products={this.props.products} />
+          <ProductList
+            products={this.props.products}
+            dispatch={this.props.dispatch}
+            history={this.props.history}
+          />
         )}
 
         <div className="container">
-        <button className="btn btn-success" onClick={this.onAddProduct}>Add New Product</button>
+          <button className="btn btn-success" onClick={this.onAddProduct}>
+            Add New Product
+          </button>
         </div>
       </div>
     );
@@ -39,10 +46,12 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
-  const { isFetching, items } = state.products;
+  const { isFetching, items, item, isEditing } = state.products;
   return {
     isFetching: isFetching,
-    products: items
+    products: items,
+    isEditing,
+    product: item
   };
 };
 

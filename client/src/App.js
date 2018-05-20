@@ -13,7 +13,13 @@ const store = applyMiddleware(thunkMiddleware, createLogger())(createStore);
 class App extends Component {
   render() {
     return (
-      <Provider store={store(reducers)}>
+      <Provider
+        store={store(
+          reducers,
+          window.__REDUX_DEVTOOLS_EXTENSION__ &&
+            window.__REDUX_DEVTOOLS_EXTENSION__()
+        )}
+      >
         <BrowserRouter>
           <Routes />
         </BrowserRouter>

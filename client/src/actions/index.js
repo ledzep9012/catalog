@@ -1,6 +1,6 @@
 import productApi from "../services/productApi";
 
-import {FETCH_PRODUCTS} from './types';
+import {FETCH_PRODUCTS, EDIT_PRODUCT} from './types';
 
 export const fetchProducts = () => dispatch => {
   productApi
@@ -13,3 +13,14 @@ export const fetchProducts = () => dispatch => {
       })
     );
 };
+
+export const editProduct = (productData) => (dispatch) => {
+    console.log(productData)
+    productApi.editProduct(productData).then(res => res.json())
+    .then(data => {
+        dispatch({
+            type:EDIT_PRODUCT,
+            payload: data
+        })
+    })
+}

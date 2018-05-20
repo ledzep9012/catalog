@@ -1,4 +1,12 @@
-import { FETCH_PRODUCTS } from "../actions/types";
+import { FETCH_PRODUCTS, EDIT_PRODUCT } from "../actions/types";
+
+const errChecker = response => {
+  if (response.errorCode !== 0) {
+    const { errorCode, errorStatus } = response;
+    return { errorCode, errorStatus };
+  }
+  return null;
+};
 
 const initialState = {
   items: [],
@@ -14,7 +22,14 @@ export default function(state = initialState, action) {
         items: action.payload,
         isFetching: false
       };
-      break;
+    case EDIT_PRODUCT:
+      const err = errChecker(action.payload);
+      return {
+        ...state,
+        item: err ? null : action.payload.data,
+        error: err,
+        isEditing: false
+      };
     default:
       return state;
   }
