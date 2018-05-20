@@ -2,12 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import Product from "./product/product";
 
-const ProductList = ({ products }) => {
-  function onProductEdit(event, id) {
-    event.preventDefault();
+const ProductList = ({products}) => {
+
+  function onProductEdit(id) {
+    console.log('check', id);
     alert("Clicked Button");
   }
-
+ 
   return (
     <table className="table">
       <tbody>
@@ -18,9 +19,10 @@ const ProductList = ({ products }) => {
           <th>Quantity</th>
           <th>Picture</th>
         </tr>
-        {/* {products.map((todo, index) => (
-      <Product key={index} {...products} onClick={() => onProductEdit} />
-    ))} */}
+        { products.length ?
+          products.map((product, index) => (
+          <Product key={index} product={product} onProductEdit={onProductEdit} />
+        )) : '<tr>Loading</tr>'}
       </tbody>
     </table>
   );

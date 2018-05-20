@@ -1,19 +1,44 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-const Product = ({ onEdit, product }) => (
-  <tr>
-  <td>{product.name}</td>
-  <td>{product.sku}</td>
-  <td>{product.quantity}</td>
-  <td>{product.price}</td>
-  <td onClick={onEdit}>Edit</td>
-  </tr>
-)
+class Product extends Component {
+  constructor(props){
+    super(props);
+    console.log(props);
+    this.state = Object.freeze({
+      onClick : this.props.onProductEdit,
+      product: this.props.product
+    })
+
+    this.onEdit = this.onEdit.bind(this);
+  }
+
+  onEdit(event) {
+    event.preventDefault();
+    console.log(this.state);
+    this.state.onClick(this.state.product);
+  }
+
+  render() {
+    return (
+      <tr>
+        <td>{this.props.product.sku}</td>
+        <td>{this.props.product.name}</td>
+        <td>{this.props.product.quantity}</td>
+        <td>{this.props.product.price}</td>
+        <td>
+          <button className="btn btn-primary" onClick={this.onEdit}>
+            Edit
+          </button>
+        </td>
+      </tr>
+    );
+  }
+}
 
 Product.propTypes = {
-  onEdit: PropTypes.func.isRequired,
+  onProductEdit: PropTypes.func.isRequired,
   product: PropTypes.object.isRequired
-}
+};
 
 export default Product;

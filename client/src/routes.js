@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import Layout from './components/hoc/layout';
-import Home from './components/home';
+import Home from './containers/home';
 
 class Routes extends Component {
+  
   render() {
     return (
       <Layout>
