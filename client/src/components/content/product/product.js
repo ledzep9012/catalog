@@ -26,6 +26,7 @@ class Product extends Component {
         <td>{this.props.product.name}</td>
         <td>{this.props.product.quantity}</td>
         <td>{this.props.product.price}</td>
+        <td>{this.props.product.picture}</td>
         <td>
           <button className="btn btn-primary" onClick={this.onEdit}>
             Edit

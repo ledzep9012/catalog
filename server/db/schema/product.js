@@ -7,6 +7,6 @@ module.exports = {
     name: { type: String },
     price: { type: Number },
     quantity: { type: Number },
-    picture: {data: Buffer, contentType: String },
+    picture: {type: String },
     sku: {type: Number, index:{unique:true}},
 }

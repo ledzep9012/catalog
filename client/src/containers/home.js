@@ -21,7 +21,6 @@ class Home extends Component {
   };
 
   componentWillMount() {
-    console.log(this.props);
     const { dispatch } = this.props;
     dispatch(fetchProducts());
   }
@@ -39,7 +38,6 @@ class Home extends Component {
 
   onConfirmAdd(newProduct) {
     const { dispatch } = this.state;
-    console.log("updating", newProduct);
     dispatch(addProduct(newProduct));
   }
 
@@ -48,7 +46,7 @@ class Home extends Component {
       <div className="container">
         {this.props.isFetching ? (
           <h2>Loading..</h2>
-        ) : this.props.products ? (
+        ) : this.props.products.length ? (
           <ProductList
             products={this.props.products}
             dispatch={this.props.dispatch}
@@ -58,9 +56,9 @@ class Home extends Component {
           <h2>
             {" "}
             {this.props.error ? (
-              <ShowError error={this.props.error} />
+              <ShowError error={this.props.error.errorCode + ' ' +this.props.error.errorStatus} />
             ) : (
-              <ShowError error="Some Error Occured" bAutoHide="false" />
+              <ShowError error="Some Error Occured" />
             )}
           </h2>
         )}
@@ -79,7 +77,7 @@ const mapStateToProps = state => {
   const { isFetching, items, item, isEditing, error } = state.products;
   return {
     isFetching: isFetching,
-    products: items,
+    products: items || [],
     isEditing,
     product: item,
     error

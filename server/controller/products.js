@@ -26,6 +26,7 @@ const list = params => {
 
 const create = params => {
   return new Promise((resolve, reject) => {
+    console.log(params);
     let productDoc = new Product({ ...params });
     productDoc
       .save()

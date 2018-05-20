@@ -11,7 +11,7 @@ class AddProduct extends Component {
       sku: 13,
       price: 250,
       quantity: 2,
-      picture: null
+      picture: "8.8.8.8"
     };
   }
 
@@ -26,14 +26,23 @@ class AddProduct extends Component {
 
   handleInputChange(event) {
     const target = event.target;
+
     let value = target.value;
     let name = target.name;
-    
-    if (name === "sku") value = Number.parseInt(value);
+    if (name === "sku") value = value ? Number.parseInt(value) : 0;
     this.setState({
       [name]: value
     });
   }
+
+  getBase64 = file => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+      reader.readAsDataURL(file);
+    });
+  };
 
   render() {
     return (
@@ -85,16 +94,14 @@ class AddProduct extends Component {
           </div>
           <div className="form-group col-md-6">
             <label>
-              Picture:
-              <img
+              URL:
+              <input
+                type="text"
                 name="picture"
-                src={this.state.picture}
-                alt={this.state.name}
+                onChange={this.handleInputChange}
+                value={this.state.picture}
               />
             </label>
-            <div className="form-group col-md-6">
-              <input type="file" className="form-control-file" />
-            </div>
           </div>
         </div>
         <div className="row" id="centerButton">

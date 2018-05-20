@@ -31,7 +31,7 @@ const ProductList = ({ products, dispatch, history }) => {
           <th>Name</th>
           <th>Price</th>
           <th>Quantity</th>
-          <th>Picture</th>
+          <th>URL</th>
         </tr>
         {products.length
           ? products.map((product, index) => (

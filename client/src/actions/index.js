@@ -14,7 +14,7 @@ export const fetchProducts = () => dispatch => {
     .then(items =>
       dispatch({
         type: FETCH_PRODUCTS,
-        payload: items.data
+        payload: items
       })
     )
     .catch(err => console.error(err));

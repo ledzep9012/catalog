@@ -112,7 +112,7 @@ const api = {
       },
       {
         name: "picture",
-        type: "Buffer",
+        type: "string",
         required: false
       }
     ],
@@ -147,7 +147,7 @@ const api = {
       },
       {
         name: "picture",
-        type: "Buffer",
+        type: "string",
         required: false
       }
     ],
