@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/ledzep9012/catalog/issues"
   },
-  "homepage": "https://github.com/ledzep9012/catalog#readme"
+  "homepage": "https://github.com/ledzep9012/catalog#readme",
+  "dependencies": {
+    "concurrently": "^3.5.1"
+  }
 }
