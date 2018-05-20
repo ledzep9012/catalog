@@ -1,24 +1,26 @@
 import React, { Component } from "react";
 
-class EditProduct extends Component {
+class AddProduct extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      name: this.props.location.product.name,
-      sku: this.props.location.product.sku,
-      picture: this.props.location.product.picture,
-      price: this.props.location.product.price,
-      quantity: this.props.location.product.quantity
-    };
+      name: 'Coffee',
+      sku: 13,
+      price: 250,
+      quantity: 2,
+      picture: null
+    }
   }
 
-  handleEdit(event) {
+  handleSubmit(event) {
+    //console.log(this.props);
     event.preventDefault();
-    const { onConfirmEdit } = this.props.location;
-    onConfirmEdit(this.state);
+    const { onConfirmAdd } = this.props.location;
+    console.log(this.state);
+    onConfirmAdd(this.state);
     window.history.back();
   }
 
@@ -26,23 +28,26 @@ class EditProduct extends Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
-    console.log(name, value);
     this.setState({
       [name]: value
     });
-  }
-
-  handleDelete(event){
-    event.preventDefault();
-    const {onDelete} = this.props.location
-    onDelete(this.state.sku);
-    window.history.back();
   }
 
   render() {
     return (
       <div className="container">
         <div className="form-row">
+          <div className="form-group col-md-6">
+            <label>
+              SKU:
+              <input
+                type="text"
+                name="sku"
+                onChange={this.handleInputChange}
+                value={this.state.sku}
+              />
+            </label>
+          </div>
           <div className="form-group col-md-6">
             <label>
               Name:
@@ -94,17 +99,9 @@ class EditProduct extends Component {
           <button
             className="btn btn-warning"
             value="confirm"
-            onClick={this.handleEdit}
+            onClick={this.handleSubmit}
           >
-            Confirm Edit
-          </button>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <button
-            className="btn btn-danger"
-            value="delete"
-            onClick={this.handleDelete}
-          >
-            Delete
+            Confirm
           </button>
         </div>
       </div>
@@ -112,4 +109,4 @@ class EditProduct extends Component {
   }
 }
 
-export default EditProduct;
+export default AddProduct;

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { editProduct } from "../../actions/index";
+import { editProduct, deleteProduct } from "../../actions/index";
 import Product from "./product/product";
 
 const ProductList = ({ products, dispatch, history }) => {
@@ -8,16 +8,21 @@ const ProductList = ({ products, dispatch, history }) => {
     var options = {
       pathname: "/editProduct",
       product: product,
-      onConfirmEdit
+      onConfirmEdit,
+      onDelete
     };
     //Open new route here to edit current product
     history.push(options);
   }
 
-  function onConfirmEdit(newProduct){
-    console.log('here');
+  function onConfirmEdit(newProduct) {
     dispatch(editProduct(newProduct));
   }
+
+  function onDelete(sku) {
+    dispatch(deleteProduct({sku:sku}));
+  }
+
   return (
     <table className="table">
       <tbody>

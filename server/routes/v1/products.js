@@ -34,6 +34,7 @@ module.exports = {
 */
 function proxyPromise(request, response, op) {
   var params = request.params;
+  console.log('DELETE', params);
   if (op.verb === "post") {
     params = request.body;
   }
@@ -57,7 +58,7 @@ function proxyPromise(request, response, op) {
         "}).catch(function(err){" +
         "console.log(err);" +
         "if(ErrorCodes[err]) {" +
-        'var ret = ErrorCodes.get(err.name);' +
+        "var ret = ErrorCodes.get(err.name);" +
         "if(err.data)   ret.data = err.data;" +
         "response.send(ret);" +
         "} else {" +
@@ -156,12 +157,12 @@ const api = {
   },
   del: {
     name: "del",
-    verb: "delete",
-    resource: "/products/:sku",
+    verb: "post",
+    resource: "/products/",
     params: [
       {
         name: "sku",
-        type: "string",
+        type: "number",
         required: true
       }
     ],

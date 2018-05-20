@@ -27,6 +27,7 @@ module.exports = {
     *   present and they are of correct type
     */
   validateParams: function(params, required) {
+    console.log(params, required);
     return new Promise(function(resolve, reject) {
       var paramsCheck = {};
 
