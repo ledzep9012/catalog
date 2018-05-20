@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchProducts, editProduct, addProduct } from "../actions/index";
 import ProductList from "../components/content/productsList";
+import ShowError from "../components/content/error/error";
 
 class Home extends Component {
   constructor(props) {
@@ -54,7 +55,14 @@ class Home extends Component {
             history={this.props.history}
           />
         ) : (
-          <h2> No Products</h2>
+          <h2>
+            {" "}
+            {this.props.error ? (
+              <ShowError error={this.props.error} />
+            ) : (
+              <ShowError error="Some Error Occured" bAutoHide="false" />
+            )}
+          </h2>
         )}
 
         <div className="container">
@@ -68,12 +76,13 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
-  const { isFetching, items, item, isEditing } = state.products;
+  const { isFetching, items, item, isEditing, error } = state.products;
   return {
     isFetching: isFetching,
     products: items,
     isEditing,
-    product: item
+    product: item,
+    error
   };
 };
 

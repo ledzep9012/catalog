@@ -7,12 +7,12 @@ class AddProduct extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      name: 'Coffee',
+      name: "Coffee",
       sku: 13,
       price: 250,
       quantity: 2,
       picture: null
-    }
+    };
   }
 
   handleSubmit(event) {
@@ -26,8 +26,10 @@ class AddProduct extends Component {
 
   handleInputChange(event) {
     const target = event.target;
-    const value = target.value;
-    const name = target.name;
+    let value = target.value;
+    let name = target.name;
+    
+    if (name === "sku") value = Number.parseInt(value);
     this.setState({
       [name]: value
     });

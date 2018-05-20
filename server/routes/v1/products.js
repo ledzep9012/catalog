@@ -34,7 +34,7 @@ module.exports = {
 */
 function proxyPromise(request, response, op) {
   var params = request.params;
-  console.log('DELETE', params);
+  console.log("DELETE", params);
   if (op.verb === "post") {
     params = request.body;
   }
