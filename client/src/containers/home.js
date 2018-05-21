@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchProducts, editProduct, addProduct } from "../actions/index";
+import { fetchProducts, addProduct } from "../actions/index";
 import ProductList from "../components/content/productsList";
 import ShowError from "../components/content/error/error";
 
@@ -21,8 +21,8 @@ class Home extends Component {
   };
 
   componentWillMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchProducts());
+    const { dispatch, isFetching } = this.props;
+    if (isFetching) dispatch(fetchProducts());
   }
 
   onAddProduct(event) {
@@ -44,6 +44,15 @@ class Home extends Component {
   render() {
     return (
       <div className="container">
+        {this.props.error ? (
+          <ShowError
+            error={
+              this.props.error.errorCode + " " + this.props.error.errorStatus
+            }
+          />
+        ) : (
+          ""
+        )}
         {this.props.isFetching ? (
           <h2>Loading..</h2>
         ) : this.props.products.length ? (
@@ -53,16 +62,8 @@ class Home extends Component {
             history={this.props.history}
           />
         ) : (
-          <h2>
-            {" "}
-            {this.props.error ? (
-              <ShowError error={this.props.error.errorCode + ' ' +this.props.error.errorStatus} />
-            ) : (
-              <ShowError error="Some Error Occured" />
-            )}
-          </h2>
+          ""
         )}
-
         <div className="container">
           <button className="btn btn-success" onClick={this.onAddProduct}>
             Add New Product

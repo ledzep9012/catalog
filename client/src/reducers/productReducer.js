@@ -46,7 +46,7 @@ export default function(state = initialState, action) {
         newItem: err ? null : action.payload.data,
         error: err,
         isAdding: false,
-        isFetching: true
+        isFetching: err ? false : true
       };
     case DELETE_PRODUCT:
       err = errChecker(action.payload);
