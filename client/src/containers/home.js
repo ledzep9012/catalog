@@ -25,6 +25,11 @@ class Home extends Component {
     if (isFetching) dispatch(fetchProducts());
   }
 
+  componentDidUpdate(){
+    const {dispatch, isFetching } = this.props;
+    if(isFetching) dispatch(fetchProducts());
+  }
+  
   onAddProduct(event) {
     event.preventDefault();
     var options = {

@@ -24,17 +24,18 @@ class EditProduct extends Component {
 
   handleInputChange(event) {
     const target = event.target;
-    const value = target.value;
+    let value = target.value;
     const name = target.name;
-    console.log(name, value);
+    if (name === "quantity") value = value ? Number.parseInt(value) : 0;
+    
     this.setState({
       [name]: value
     });
   }
 
-  handleDelete(event){
+  handleDelete(event) {
     event.preventDefault();
-    const {onDelete} = this.props.location
+    const { onDelete } = this.props.location;
     onDelete(this.state.sku);
     window.history.back();
   }
@@ -78,16 +79,14 @@ class EditProduct extends Component {
           </div>
           <div className="form-group col-md-6">
             <label>
-              Picture:
-              <img
+              URL:
+              <input
+                type="text"
                 name="picture"
-                src={this.state.picture}
-                alt={this.state.name}
+                onChange={this.handleInputChange}
+                value={this.state.picture}
               />
             </label>
-            <div className="form-group col-md-6">
-              <input type="file" className="form-control-file" />
-            </div>
           </div>
         </div>
         <div className="row" id="centerButton">

@@ -49,7 +49,7 @@ export const addProduct = newProduct => dispatch => {
 
 export const deleteProduct = sku => dispatch => {
   productApi
-    .deleteProduct(sku)
+    .deleteProduct({sku:sku})
     .then(res => res.json())
     .then(data => ({
       dispatch: DELETE_PRODUCT,

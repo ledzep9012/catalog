@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 class Product extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = Object.freeze({
       onClick: this.props.onProductEdit,
       product: this.props.product

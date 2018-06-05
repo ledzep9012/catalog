@@ -12,7 +12,7 @@ class Routes extends Component {
     return (
       <Layout>
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route path="/:filter?" exact component={Home} />
           <Route path="/editProduct" component={EditProduct}/>
           <Route path="/addProduct" component={AddProduct}/>
         </Switch>

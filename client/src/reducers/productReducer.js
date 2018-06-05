@@ -46,13 +46,15 @@ export default function(state = initialState, action) {
         newItem: err ? null : action.payload.data,
         error: err,
         isAdding: false,
-        isFetching: err ? false : true
+        isFetching: err ? false : true,
       };
     case DELETE_PRODUCT:
       err = errChecker(action.payload);
+      console.log('here', action);
       return {
         ...state,
-        error: err
+        error: err,
+        isFetching: err ? false : true,
       };
     default:
       return state;

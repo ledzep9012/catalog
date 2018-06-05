@@ -5,12 +5,12 @@ import Product from "./product/product";
 
 const ProductList = ({ products, dispatch, history }) => {
   function onProductEdit(product) {
-    var options = {
+    var options = Object.freeze({
       pathname: "/editProduct",
       product: product,
       onConfirmEdit,
       onDelete
-    };
+    });
     //Open new route here to edit current product
     history.push(options);
   }
@@ -20,7 +20,7 @@ const ProductList = ({ products, dispatch, history }) => {
   }
 
   function onDelete(sku) {
-    dispatch(deleteProduct({sku:sku}));
+    dispatch(deleteProduct(sku));
   }
 
   return (
